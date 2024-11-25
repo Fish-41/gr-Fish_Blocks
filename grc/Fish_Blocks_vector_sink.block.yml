@@ -1,0 +1,39 @@
+id: fish_blocks_vector_sink
+label: Vector Sink
+category: '[Fish Blocks]'
+
+templates:
+  imports: from gnuradio import fish_blocks
+  make: fish_blocks.vector_sink(${vector_len}, ${in_num})
+
+parameters:
+- id: vector_len
+  label: Vector Length
+  dtype: int
+  default: 1024
+- id: in_num
+  label: Number of Inputs
+  dtype: int
+  default: 4
+
+inputs:
+- label: in_
+  domain: stream
+  dtype: complex
+  vlen: ${vector_len}
+  multiplicity: ${in_num}
+
+outputs:
+
+documentation: |-
+  This block records vectors and allows them to be obtained inside the main code. 
+  
+  Parameters:
+    - **Vector Length**: Defines the length of the input vectors.
+    - **Number of Inputs**: Sets the number of complex input and output streams.
+  
+  get_data():
+    - **shape**: (Number of Inputs, Vector Length)
+
+
+file_format: 1

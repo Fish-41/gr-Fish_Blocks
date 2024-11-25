@@ -1,0 +1,64 @@
+id: fish_blocks_vector_save
+label: Vector Save
+category: '[Fish Blocks]'
+
+templates:
+  imports: from gnuradio import fish_blocks
+  make: fish_blocks.vector_save(${vector_len}, ${in_num}, ${file_location}, ${data_size}, ${collect_data}, ${save_data})
+
+parameters:
+- id: vector_len
+  label: Vector Length
+  dtype: int
+  default: 1024
+- id: in_num
+  label: Number of Inputs
+  dtype: int
+  default: 4
+- id: file_location
+  label: File Location
+  dtype: string
+  default: '/folder/your_file.npz'
+- id: data_size
+  label: Size of Saved Data
+  dtype: int
+  default: 1000
+- id: collect_data
+  label: Collect Data
+  dtype: bool
+  default: True
+- id: save_data
+  label: Save Data
+  dtype: bool
+  default: True
+
+inputs:
+- label: in_
+  domain: stream
+  dtype: complex
+  vlen: ${vector_len}
+  multiplicity: ${in_num}
+
+outputs:
+
+documentation: |-
+  This block records vectors and saves them to a given file location.
+  
+  Parameters:
+    - **Vector Length**: Defines the length of the input vectors.
+    - **Number of Inputs**: Sets the number of complex input and output streams.
+    - **File Location**: Where the data is saved.
+    - **Size of Saved Data**: How many vectors you save to the file.
+    - **Collect Data**: Bool, true means you start collecting data.
+    - **Save Data**: Bool, true means you start saving data.
+  
+  get_data():
+    - **shape**: (Size of Saved Data, Number of Inputs, Vector Length)
+  
+  set_collect_data()
+  
+  set_save_data()
+
+
+
+file_format: 1
