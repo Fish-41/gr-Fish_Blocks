@@ -1,0 +1,57 @@
+id: fish_blocks_vector_sink
+label: Vector Sink
+category: '[Fish Blocks]'
+
+templates:
+  imports: from gnuradio import fish_blocks
+  make: fish_blocks.vector_sink(${vector_len}, ${in_num}, '${in_type}', ${buff}, ${buff_count})
+
+parameters:
+- id: vector_len
+  label: Vector Length
+  dtype: int
+  default: 1024
+- id: in_num
+  label: Number of Inputs
+  dtype: int
+  default: 4
+- id: in_type
+  label: Input Type
+  dtype: enum
+  options: [complex, float, int]
+  default: complex
+- id: buff
+  label: Buffered or Unbuffered
+  dtype: bool
+  options: [True, False]
+  default: False
+- id: buff_count
+  label: Buffer Length
+  default: 10
+  hide: ${('none' if buff else 'all')}
+
+inputs:
+- label: in
+  domain: stream
+  dtype: ${in_type}
+  vlen: ${vector_len}
+  multiplicity: ${in_num}
+
+outputs:
+
+documentation: |-
+  This block records vectors and allows them to be obtained inside the main code. 
+  
+  Parameters:
+    - **Vector Length**: Defines the length of the input vectors.
+    - **Number of Inputs**: Sets the number of input and output streams.
+    - **Input Type**: np.complex64, np.float32 or np.int32.
+    - **Buffered or Unbuffered**: If true stores previous samples in buffer.
+    - **Buffer Length**: Number of samples stored in the buffer.
+  
+  get_data(clear_buffer):
+    - **clear_buffer**: Bool, if true clears the buffer after function called.
+    - **returns**: (Buffer Length, Number of Inputs, Vector Length)
+
+
+file_format: 1
