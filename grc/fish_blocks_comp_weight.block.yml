@@ -35,11 +35,15 @@ inputs:
   multiplicity: ${len(mag)}
 
 outputs:
-- label: Combined Output 
+- label: comb_out
   domain: stream
   dtype: complex
   vlen: ${vector_len}
-  multiplicity: ${1}
+- label: out
+  domain: stream
+  dtype: complex
+  vlen: ${vector_len}
+  multiplicity: ${len(mag)}
 
 
 documentation: |-
