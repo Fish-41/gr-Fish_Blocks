@@ -27,14 +27,14 @@ class comp_weight(gr.sync_block):
         self.phase = phase
         self.in_num = len(self.mag)
         
-        self.empty_input = [[] for _ in range(self.Nr)]
+        self.empty_input = [[] for _ in range(self.in_num)]
 
 
     def work(self, input_items, output_items):
         n_vectors = len(input_items[0])
         inputs = self.empty_input
         
-        for x in range(self.Nr):
+        for x in range(self.in_num):
             stream_data = [input_items[x][i] for i in range(n_vectors)]
             concatenated_stream = np.concatenate(stream_data)
             inputs[x] = concatenated_stream
