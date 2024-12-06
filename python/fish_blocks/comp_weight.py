@@ -49,6 +49,8 @@ class comp_weight(gr.sync_block):
         
         final_combined_vectors = final_combined.reshape((n_vectors, self.vector_len))
         output_items[0][:n_vectors] = final_combined_vectors
+        
+        return n_vectors
 
     def parse_weights(self):
         mag = list(self.mag)
@@ -66,10 +68,11 @@ class comp_weight(gr.sync_block):
         elif len(phase) < self.in_num:
             phase += [0] * (self.in_num - len(phase))
 
-        return mag, phase
+        return np.array(mag), np.array(phase)
     
     def set_mag(self, mag):
         self.mag = mag
         
     def set_phase(self, phase):
         self.phase = phase
+
