@@ -21,4 +21,6 @@ except ModuleNotFoundError:
 
 # import any pure python here
 from .vector_sink import vector_sink
+from .comp_weight import comp_weight
+from .lcmv_weights import lcmv_weights
 #

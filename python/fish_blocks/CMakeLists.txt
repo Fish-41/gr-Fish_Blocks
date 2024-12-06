@@ -22,7 +22,9 @@ add_subdirectory(bindings)
 GR_PYTHON_INSTALL(
     FILES
     __init__.py
-    vector_sink.py DESTINATION ${GR_PYTHON_DIR}/gnuradio/fish_blocks
+    vector_sink.py
+    comp_weight.py
+    lcmv_weights.py DESTINATION ${GR_PYTHON_DIR}/gnuradio/fish_blocks
 )
 
 ########################################################################

@@ -7,5 +7,7 @@
 #
 
 install(FILES
-    fish_blocks_vector_sink.block.yml DESTINATION share/gnuradio/grc/blocks
+    fish_blocks_vector_sink.block.yml
+    fish_blocks_comp_weight.block.yml
+    fish_blocks_lcmv_weights.block.yml DESTINATION share/gnuradio/grc/blocks
 )

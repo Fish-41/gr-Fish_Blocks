@@ -1,0 +1,67 @@
+id: fish_blocks_lcmv_weights
+label: LCMV Weights
+category: '[Fish Blocks]'
+
+templates:
+  imports: from gnuradio import fish_blocks
+  make: fish_blocks.lcmv_weights(${nr}, ${beam_val}, ${spacing}, ${nulls}, ${null_pos}, ${beam_pos})
+  callbacks:
+  - set_beam_pos(${beam_pos})
+  - set_null_pos(${null_pos})
+
+parameters:
+- id: nr
+  label: Number of Antenna
+  dtype: int
+  default: 4
+- id: beam_val
+  label: Beam Value
+  dtype: float
+  default: 1
+- id: spacing
+  label: Spacing
+  dtype: float
+  default: 0.5
+
+- id: beam_pos
+  label: Beam Position
+  dtype: int_vector
+  default: [90]
+
+- id: nulls
+  label: Set Nulls
+  dtype: bool
+  options: [True, False]
+  default: False
+- id: null_pos
+  label: Null Position
+  dtype: int_vector
+  default: [-90]
+  hide: ${'none' if nulls else 'all'}
+
+
+inputs:
+
+outputs:
+
+documentation: |-
+  This block returns LCMV weights, based on ULA geometry.
+  
+  Parameters:
+    - **Number of Antenna**: Sets the number of antennas in the array.
+    - **Spacing**: Spacing between antennas.
+    - **Beam Position**: Position of beams, format should be list with each element being a different angle in degrees.
+    - **Set Nulls**: If true enables the setting of null positions.
+    - **Null Position**: Position of nulls, format should be list with each element being a different angle in degrees.
+  
+  get_weights():
+    - **returns**: (Magnitiudes), (Phases)
+  
+  set_beam_pos(Beam Position):
+    - Updates the beam position.
+  
+  set_null_pos(Null Position):
+    - Updates the beam position.
+
+
+file_format: 1
