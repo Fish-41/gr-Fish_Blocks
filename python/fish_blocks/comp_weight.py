@@ -7,7 +7,7 @@
 #
 
 
-import numpy
+import numpy as np
 from gnuradio import gr
 
 class comp_weight(gr.sync_block):
